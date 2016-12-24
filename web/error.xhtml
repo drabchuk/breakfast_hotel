@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Error</title>
+    <h:outputStylesheet library="css" name="colors.css"></h:outputStylesheet>
+    <h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
+    <h:outputStylesheet href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'
+                        library="css" name="style.css"></h:outputStylesheet>
+</h:head>
+<h:body styleClass="body-class">
+    <f:view>
+        <ui:include src="templates/header.xhtml"/>
+        <div class="sheet-of-paper">
+            <p>
+                <b>Sorry, either name or password is incorrect please try again</b>
+            </p>
+            <p>
+                <h:outputLink value="login.xhtml">Login Again</h:outputLink>
+            </p>
+        </div>
+
+    </f:view>
+</h:body>
+</html>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Home Page</title>
+    <h:outputStylesheet library="css" name="colors.css"></h:outputStylesheet>
+    <h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
+    <h:outputStylesheet href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'
+                        library="css" name="style.css"></h:outputStylesheet>
+</h:head>
+<h:body  class="body-class">
+    <ui:include src="templates/header.xhtml"/>
+    <div class="sheet-of-paper">
+    <h:panelGrid rendered="#{user.role == UserRole.values[0]}" id="panel" columns="2" cellpadding="10"
+                  frame="none">
+        <h:outputLabel value="Already a user" />
+        <h:outputLink value="login.xhtml">Sign In</h:outputLink>
+        <h:outputLabel value="Not a member yet" />
+        <h:outputLink value="register.xhtml">Sign Up</h:outputLink>
+    </h:panelGrid>
+
+        <h:outputLink rendered="#{user.role == UserRole.values[1]}" value="menu.xhtml">Menu</h:outputLink>
+        <h:outputLink rendered="#{user.role == UserRole.values[2]}" value="orders.xhtml">Orders</h:outputLink>
+    </div>
+</h:body>
+</html>

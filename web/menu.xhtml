@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+    <title>Menu</title>
+    <h:outputStylesheet library="css" name="colors.css"></h:outputStylesheet>
+    <h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
+    <h:outputStylesheet href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'
+                        library="css" name="style.css"></h:outputStylesheet>
+</h:head>
+<f:view>
+    <h:body class="body-class">
+        <ui:include src="templates/header.xhtml"/>
+        <div class="sheet-of-paper">
+            <h:form id="wishlist">
+                <h:dataTable value="#{menu.dishes}" var="dish"
+                             styleClass=""
+                             headerClass=""
+                             rowClasses="sheet-of-paper">
+                    <h:column>
+                        <f:facet name="header"></f:facet>
+                        #{dish.name}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header"></f:facet>
+                        #{dish.description}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header"></f:facet>
+                        <h:graphicImage value="resources/img/#{dish.picture_url}"/>
+                    </h:column>
+                    <h:column>
+                        <h:commandButton rendered="#{!order.contains(dish)}" styleClass="button-input" value="add"
+                                         action="#{order.addDish(dish)}"></h:commandButton>
+                        <h:commandButton rendered="#{order.contains(dish)}" styleClass="button-input" value="remove"
+                                         action="#{order.removeDish(dish)}"></h:commandButton>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header"></f:facet>
+                        <h:graphicImage rendered="#{order.contains(dish)}" width="50" value="resources/img/mark_v.png"/>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </div>
+    </h:body>
+</f:view>
+</html>

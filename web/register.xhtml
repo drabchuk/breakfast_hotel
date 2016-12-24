@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Registration Page</title>
+    <h:outputStylesheet library="css" name="colors.css"></h:outputStylesheet>
+    <h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
+    <h:outputStylesheet href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'
+                        library="css" name="style.css"></h:outputStylesheet>
+</h:head>
+<h:body class="body-class">
+    <f:view>
+        <ui:include src="templates/header.xhtml"/>
+        <h:form id="registerForm">
+            <div class="sheet-of-paper">
+                <table>
+                    <tr>
+                        <td><h:outputText value="Enter Your First Name:" styleClass="input-window"/></td>
+                        <td><h:inputText id="fname" value="#{user.firstName}" styleClass="input-window"
+                                         required="true" maxlength="20" requiredMessage="Please enter your first name"/>
+                        </td>
+                        <td><h:message for="fname" style="color:red"/></td>
+                    </tr>
+                    <tr>
+                        <td><h:outputText value="Enter Your Last Name:" styleClass="input-window"/></td>
+                        <td><h:inputText id="lname" value="#{user.secondName}" styleClass="input-window"
+                                         required="true" maxlength="20" requiredMessage="Please enter your last name"/>
+                        </td>
+                        <td><h:message for="lname" style="color:red"/></td>
+                    </tr>
+                    <tr>
+                        <td><h:outputText value="Enter Your email:" styleClass="input-window"/></td>
+                        <td><h:inputText id="email" value="#{user.email}" styleClass="input-window"
+                                         required="true" size="45" requiredMessage="Please enter your email id"
+                                         validatorMessage="Illegal e-mail format">
+                            <f:validateRegex
+                                    pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
+                        </h:inputText>
+                        </td>
+                        <td><h:message for="email" style="color:red"/></td>
+                    </tr>
+                    <tr>
+                        <td><h:outputText value="Enter Password :" styleClass="input-window"/></td>
+                        <td><h:inputSecret id="psw" value="#{user.password}" styleClass="input-window"
+                                           required="true" size="20" requiredMessage="Please enter your password"/></td>
+                        <td><h:message for="psw" style="color:red"/></td>
+                    </tr>
+                    <tr>
+                        <td/>
+                        <td><h:commandButton value="Register" action="#{user.add}"/></td>
+                    </tr>
+                    <tr>
+                        <td><h:outputLink value="home.xhtml">Home</h:outputLink></td>
+                    </tr>
+                </table>
+            </div>
+        </h:form>
+    </f:view>
+</h:body>
+</html>

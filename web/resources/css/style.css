@@ -1,0 +1,87 @@
+h1{
+    padding-top: 0;
+    display: inline;
+}
+
+.header {
+    width: 100%;
+    height: 160px;
+    font-family: 'Lato', sans-serif;
+    /*padding-left: 38%;*/
+   /* padding-top: 0%;*/
+    border: 0px;
+    text-align: left;
+    position: relative;
+}
+.top-header {
+    width: 100%;
+    height: 30px;
+    position: relative;
+}
+
+.welcome-statement {
+    position: relative;
+    padding-left: 38%;
+    width: 32%;
+    float: left;
+}
+
+.account-data {
+    position: relative;
+    width: 30%;
+    float: right;
+    color: #C5CAE9;
+    link: #C5CAE9;
+    vlink: #C5CAE9;
+}
+
+a{
+    color: #FF9800;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #FF9800;
+}
+
+
+.body-class {
+    width: 100%;
+    margin-left: 0px;
+    margin-top: 0px;
+    margin-right: 0px;
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+}
+
+.input-line {
+    margin-left: 5%;
+    padding-top: 30px;
+    width: 90%;
+    height: 70px;
+    box-shadow: 0 0 6px rgba(0,0,0,0.5);
+}
+
+.input-window {
+    width: 90%;
+    height: 30px;
+}
+
+.button-input {
+    width: 100px;
+    height: 36px;
+    margin: 0px;
+    border: 0px;
+    padding: 0px;
+    background-color: #FF9800;
+}
+
+.sheet-of-paper {
+    margin-top: 30px;
+    padding-left: 23.5%;
+    padding-right: 23.5%;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 6px rgba(0,0,0,0.5);
+}
