@@ -3,6 +3,8 @@ package beans;
 import db.dao.DAOSingleton;
 import db.dao.UserDAO;
 import db.entities.User;
+import model.UserRole;
+
 import java.sql.SQLException;
 
 import javax.faces.bean.ManagedBean;
@@ -76,7 +78,7 @@ public class UserBean {
         this.role = role;
     }
 
-    public String add(){
+    public String add() {
         try {
             userDAO.insertUser(user);
             this.login();
@@ -87,24 +89,23 @@ public class UserBean {
         }
     }
 
-    public void dbData(String email) throws SQLException{
+    public void dbData(String email) throws SQLException {
         dbUser = userDAO.selectUserByEmail(email);
         if (dbUser == null) return;
         user.setFirstName(dbUser.getFirstName());
         user.setSecondName(dbUser.getSecondName());
+        user.setRole(dbUser.getRole());
     }
 
-    public String checkIsChef() {
-        if (this.role != UserRole.CHEF) {
-            return "home.xhtml";
-        }
-        return null;
+    public String homeRedirect() {
+        return "home";
     }
 
-    public String login() throws SQLException{
+    public String login() throws SQLException {
         dbData(user.getEmail());
+        if (dbUser == null) return "invalid";
         if (user.getPass().equals(dbUser.getPass())) {
-            role = UserRole.AUTHORIZED;
+            role = user.getRole();
             return "output";
         } else
             return "invalid";

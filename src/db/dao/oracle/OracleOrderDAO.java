@@ -11,8 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Denis on 16.12.2016.
@@ -58,7 +57,48 @@ public class OracleOrderDAO implements OrderDAO {
 
     @Override
     public List<Order> selectOrders(Date date) throws SQLException {
-        return null;
+        HashMap<String, Order> orders = new HashMap<>();
+        try (Connection con = OracleDAOFactory.createConnection()
+             ; PreparedStatement ps =
+                     con.prepareStatement(
+                             "SELECT * FROM\n" +
+                                     "  BREAKFAST_ORDER\n" +
+                                     "  JOIN USR ON BREAKFAST_ORDER.USER_EMAIL_FK = USR.EMAIL\n" +
+                                     "  JOIN DISH ON BREAKFAST_ORDER.DISH_NAME_FK = DISH.DISH_NAME\n" +
+                                     "WHERE ORDER_DATE = ?"
+                     )
+        ) {
+
+            ps.setString(1, date.toString());
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                String email = rs.getString("EMAIL");
+                if (orders.containsKey(email)) {
+                    Order o = orders.get(email);
+                    o.add(new Dish(rs.getString("DISH_NAME"),
+                                    rs.getString("DESCRIPTION"),
+                                    rs.getString("PICTURE_URL"))
+                    );
+                } else {
+                    Order o = new Order(date, new User(
+                            rs.getString("EMAIL"),
+                            rs.getString("PASS"),
+                            rs.getString("FIRST_NAME"),
+                            rs.getString("SECOND_NAME")
+                            )
+                    );
+                    o.add(new Dish(rs.getString("DISH_NAME"),
+                            rs.getString("DESCRIPTION"),
+                            rs.getString("PICTURE_URL"))
+                    );
+                    orders.put(rs.getString("EMAIL"), o);
+                }
+            }
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+            throw new SQLException(sqle);
+        }
+        return new LinkedList<>(orders.values());
     }
 
     @Override

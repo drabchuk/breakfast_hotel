@@ -13,7 +13,7 @@ import java.util.Properties;
 /**
  * Created by Denis on 09.12.2016.
  */
-public class OracleDAOFactory extends DAOFactory {
+public final class OracleDAOFactory extends DAOFactory {
     //public static final String DB_URL = "jdbc:oracle:thin:@localhost:1521/study";
     //private static final String USER = "denis";
     //private static final String USER = "hotel_breakfast";
@@ -53,4 +53,5 @@ public class OracleDAOFactory extends DAOFactory {
     public StockDAO getStockDAO() {
         return new OracleStockDAO();
     }
+
 }

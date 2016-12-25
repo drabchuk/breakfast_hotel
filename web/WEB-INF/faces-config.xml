@@ -9,6 +9,7 @@
             <default-locale>en</default-locale>
         </locale-config>
     </application-->
+
     <navigation-rule>
         <description>login user</description>
         <from-view-id>/login.xhtml</from-view-id>
@@ -22,6 +23,21 @@
             <from-action>#{user.login}</from-action>
             <from-outcome>invalid</from-outcome>
             <to-view-id>/error.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <description>orders</description>
+        <from-view-id>/orders.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{user.homeRedirect}</from-action>
+            <from-outcome>home</from-outcome>
+            <to-view-id>/home.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{order_view.viewOrder}</from-action>
+            <from-outcome>view</from-outcome>
+            <to-view-id>/order_view.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 

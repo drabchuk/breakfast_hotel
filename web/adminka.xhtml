@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+    <title>Admin</title>
+    <h:outputStylesheet library="css" name="colors.css"></h:outputStylesheet>
+    <h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
+    <h:outputStylesheet href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'
+                        library="css" name="style.css"></h:outputStylesheet>
+</h:head>
+
+<h:body class="body-class">
+    <f:view>
+        <c:if test="#{user.role == UserRole.values[3]}">
+            <ui:include src="templates/header.xhtml"/>
+            <div class="sheet-of-paper">
+                <h:form>
+                    <h:dataTable value="#{adminUsers.users}" var="user"
+                                 styleClass=""
+                                 headerClass=""
+                                 rowClasses="sheet-of-paper">
+                        <h:column>
+                            <f:facet name="header"></f:facet>
+                            #{user.email}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header"></f:facet>
+                            #{user.firstName}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header"></f:facet>
+                            #{user.secondName}
+                        </h:column>
+                        <h:column>
+                            <h:selectOneMenu id="role" value="#{user.role}">
+                                <f:selectItems value="#{UserRole.values}"/>
+                            </h:selectOneMenu>
+                        </h:column>
+                        <h:column>
+                            <h:commandButton styleClass="button-input" value="save"
+                                             action="#{adminUsers.setRole(user)}"/>
+                        </h:column>
+                        <h:column>
+                            <h:commandButton styleClass="button-input" value="delete user"
+                                             action="#{adminUsers.deleteUser(user)}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+            </div>
+        </c:if>
+        <c:otherwise>
+            <f:viewAction action="#{user.homeRedirect}"/>
+        </c:otherwise>
+    </f:view>
+</h:body>
+
+</html>
+

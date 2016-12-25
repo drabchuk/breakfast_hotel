@@ -1,6 +1,6 @@
 package beans_old;
 
-import beans.UserRole;
+import model.UserRole;
 import db.dao.DAOSingleton;
 import db.dao.UserDAO;
 import db.entities.User;

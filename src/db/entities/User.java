@@ -1,10 +1,13 @@
 package db.entities;
 
+import model.UserRole;
+
 public class User {
     private String email;
     private String pass;
     private String firstName;
     private String secondName;
+    private UserRole role;
 
     public User() {
     }
@@ -14,6 +17,7 @@ public class User {
         this.pass = pass;
         this.firstName = firstName;
         this.secondName = secondName;
+        this.role = UserRole.AUTHORIZED;
     }
 
     public String getEmail() {
@@ -46,5 +50,13 @@ public class User {
 
     public void setSecondName(String secondName) {
         this.secondName = secondName;
+    }
+
+    public UserRole getRole() {
+        return role;
+    }
+
+    public void setRole(UserRole role) {
+        this.role = role;
     }
 }

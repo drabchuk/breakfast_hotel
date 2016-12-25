@@ -22,7 +22,24 @@
                 </p>
             </h:form>
         </c:if>
-
+        <c:if test="#{user.role == UserRole.getValues()[2]}">
+            <h:outputText value="authorized as chef: "/>
+            <h:outputText value="#{user.firstName} #{user.secondName}"/>
+            <h:form>
+                <p>
+                    <h:commandLink value="logout" action="#{user.logout}"/>
+                </p>
+            </h:form>
+        </c:if>
+        <c:if test="#{user.role == UserRole.getValues()[3]}">
+            <h:outputText value="authorized as admin: "/>
+            <h:outputText value="#{user.firstName} #{user.secondName}"/>
+            <h:form>
+                <p>
+                    <h:commandLink value="logout" action="#{user.logout}"/>
+                </p>
+            </h:form>
+        </c:if>
     </div>
 </f:view>
 </html>
