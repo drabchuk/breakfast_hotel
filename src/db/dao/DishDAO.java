@@ -10,6 +10,7 @@ import java.util.List;
  */
 public interface DishDAO {
 
+    List<ProductSalesCount> getStockAccount() throws SQLException;
     List<ProductSalesCount> getTopProducts() throws SQLException;
 
 }

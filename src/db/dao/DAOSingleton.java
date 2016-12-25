@@ -16,8 +16,6 @@ public class DAOSingleton {
     private DishDAO dishDAO;
     private MenuDAO menuDAO;
     private OrderDAO orderDAO;
-    private ProductDAO productDAO;
-    private StockDAO stockDAO;
 
 
     private DAOSingleton(int dbName) {
@@ -26,8 +24,6 @@ public class DAOSingleton {
         dishDAO = factory.getDishDAO();
         menuDAO = factory.getMenuDAO();
         orderDAO = factory.getOrderDAO();
-        productDAO = factory.getProductDAO();
-        stockDAO = factory.getStockDAO();
         try {
             String fileName = "db.properties";
             ClassLoader classLoader = this.getClass().getClassLoader();
@@ -62,14 +58,6 @@ public class DAOSingleton {
 
     public OrderDAO getOrderDAO() {
         return orderDAO;
-    }
-
-    public ProductDAO getProductDAO() {
-        return productDAO;
-    }
-
-    public StockDAO getStockDAO() {
-        return stockDAO;
     }
 
 }

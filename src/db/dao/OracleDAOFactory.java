@@ -44,14 +44,4 @@ public final class OracleDAOFactory extends DAOFactory {
         return new OracleDishDAO();
     }
 
-    @Override
-    public ProductDAO getProductDAO() {
-        return new OracleProductDAO();
-    }
-
-    @Override
-    public StockDAO getStockDAO() {
-        return new OracleStockDAO();
-    }
-
 }

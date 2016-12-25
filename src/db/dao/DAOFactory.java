@@ -11,8 +11,6 @@ public abstract class DAOFactory {
     public abstract OrderDAO getOrderDAO();
     public abstract MenuDAO getMenuDAO();
     public abstract DishDAO getDishDAO();
-    public abstract ProductDAO getProductDAO();
-    public abstract StockDAO getStockDAO();
 
     public static DAOFactory getDAOFactory(int whichFactory) {
         switch (whichFactory) {

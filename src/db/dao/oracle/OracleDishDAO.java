@@ -18,6 +18,31 @@ import java.util.List;
 public class OracleDishDAO implements DishDAO {
 
     @Override
+    public List<ProductSalesCount> getStockAccount() throws SQLException {
+        try (Connection con = OracleDAOFactory.createConnection()
+             ; Statement statement = con.createStatement()) {
+            List<ProductSalesCount> list = new LinkedList<>();
+            String query =
+                    "SELECT * FROM STOCK_BALANCE";
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                String dishName = rs.getString("DISH_NAME_FK");
+                String dishDescription = rs.getString("DESCRIPTION");
+                String pictireURL = rs.getString("PICTURE_URL");
+                Integer balance = rs.getInt("BALANCE");
+                list.add(new ProductSalesCount(
+                        new Dish(dishName, dishDescription, pictireURL),
+                        balance)
+                );
+            }
+            return list;
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+            throw new SQLException(sqle);
+        }
+    }
+
+    @Override
     public List<ProductSalesCount> getTopProducts() throws SQLException {
         try (Connection con = OracleDAOFactory.createConnection()
              ; Statement statement = con.createStatement()) {
