@@ -34,4 +34,8 @@ public class OrderViewBean {
         return "view";
     }
 
+    public String test() {
+        return "view";
+    }
+
 }

@@ -43,10 +43,12 @@
                         </h:column>
                         <h:column>
                             <h:commandButton styleClass="button-input" value="save"
+                                             onclick="if (! confirm('Really want to do that?')) return false"
                                              action="#{adminUsers.setRole(user)}"/>
                         </h:column>
                         <h:column>
                             <h:commandButton styleClass="button-input" value="delete user"
+                                             onclick="if (! confirm('Really want to do that?')) return false"
                                              action="#{adminUsers.deleteUser(user)}"/>
                         </h:column>
                     </h:dataTable>

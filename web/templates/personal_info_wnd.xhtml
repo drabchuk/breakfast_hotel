@@ -11,7 +11,7 @@
         <c:if test="#{user.role == UserRole.getValues()[0]}">
             <h:link value="login" outcome="login"/>
             <h:outputText value="   "/>
-            <h:link value="sign in" outcome="register"/>
+            <h:link value="sign up" outcome="register"/>
         </c:if>
         <c:if test="#{user.role == UserRole.getValues()[1]}">
             <h:outputText value="authorized as: "/>

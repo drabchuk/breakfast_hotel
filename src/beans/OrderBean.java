@@ -8,6 +8,7 @@ import db.entities.User;
 import model.Date;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import java.sql.SQLException;
@@ -16,7 +17,7 @@ import java.sql.SQLException;
  * Created by Denis on 19.12.2016.
  */
 @ManagedBean(name = "order")
-@SessionScoped
+@RequestScoped
 public class OrderBean {
 
     private Order order;

@@ -9,43 +9,44 @@
 
 <h:head>
     <title>Orders</title>
-    <h:outputStylesheet library="css" name="colors.css"></h:outputStylesheet>
-    <h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
+    <h:outputScript library="js" name="script.js"/>
+    <h:outputStylesheet library="css" name="colors.css"/>
+    <h:outputStylesheet library="css" name="style.css"/>
     <h:outputStylesheet href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'
-                        library="css" name="style.css"></h:outputStylesheet>
+                        library="css" name="style.css"/>
 </h:head>
 
 <h:body class="body-class">
     <f:view>
-    <c:if test="#{user.role == UserRole.values[2]}">
-        <ui:include src="templates/header.xhtml"/>
-        <div class="sheet-of-paper">
-            <h:dataTable value="#{orders.orderList}" var="ord"
-                         styleClass=""
-                         headerClass=""
-                         rowClasses="sheet-of-paper">
-                <h:column>
-                    <f:facet name="header"></f:facet>
-                    #{ord.user.firstName}
-                </h:column>
-                <h:column>
-                    <f:facet name="header"></f:facet>
-                    #{ord.user.secondName}
-                </h:column>
-                <h:column>
-                    <f:facet name="header"></f:facet>
-                    #{ord.dishesList.size()}
-                </h:column>
-                <h:column>
-                    <h:commandButton styleClass="button-input" value="view"
-                                     action="#{order_view.viewOrder(ord)}"/>
-                </h:column>
-            </h:dataTable>
-        </div>
-    </c:if>
-    <c:otherwise>
-        <f:viewAction action="#{user.homeRedirect}"/>
-    </c:otherwise>
+        <c:if test="#{user.role == UserRole.values[2]}">
+            <ui:include src="templates/header.xhtml"/>
+            <div class="sheet-of-paper">
+                <h:form id="ordView">
+                    <h:dataTable value="#{orders.orderList}" var="ord"
+                                 styleClass=""
+                                 headerClass=""
+                                 rowClasses="sheet-of-paper">
+                        <h:column>
+                            <h:panelGrid columns="4">
+                                <h:graphicImage id="expand" width="20"
+                                                value="resources/img/expand.png" onclick="toggleDetails(this);" />
+                                <h:outputText value="#{ord.user.firstName}" />
+                                <h:outputText value="#{ord.user.secondName}" />
+                                <h:outputText value="#{ord.dishesList.size()}" />
+                            </h:panelGrid>
+                            <h:dataTable id="details" value="#{ord.dishesList}" var="detail" style="display: none;">
+                                <h:column><h:outputText value="#{detail.name}" /></h:column>
+                                <h:column><h:outputText value="#{detail.description}" /></h:column>
+                                <h:column><h:graphicImage width="50" value="resources/img/#{detail.picture_url}"/></h:column>
+                            </h:dataTable>
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+            </div>
+        </c:if>
+        <c:otherwise>
+            <f:viewAction action="#{user.homeRedirect}"/>
+        </c:otherwise>
     </f:view>
 </h:body>
 </html>

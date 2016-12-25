@@ -8,6 +8,7 @@ import model.Date;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -36,5 +37,14 @@ public class OrdersBean {
 
     public void setOrderList(List<Order> orderList) {
         this.orderList = orderList;
+    }
+
+    public String viewOrder(Order order) {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        OrderViewBean orderViewBean = (OrderViewBean)
+                facesContext.getApplication()
+                        .createValueBinding("#{order_view}").getValue(facesContext);
+        orderViewBean.setOrder(order);
+        return "view";
     }
 }

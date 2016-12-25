@@ -39,6 +39,11 @@
             <from-outcome>view</from-outcome>
             <to-view-id>/order_view.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-action>#{order_view.test}</from-action>
+            <from-outcome>view</from-outcome>
+            <to-view-id>/order_view.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
