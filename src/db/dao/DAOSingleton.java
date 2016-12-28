@@ -19,6 +19,9 @@ public class DAOSingleton {
 
 
     private DAOSingleton(int dbName) {
+        String path = new File(".").getAbsolutePath();
+
+
         DAOFactory factory = DAOFactory.getDAOFactory(dbName);
         userDAO = factory.getUserDAO();
         dishDAO = factory.getDishDAO();
